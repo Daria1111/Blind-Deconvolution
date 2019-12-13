@@ -1,16 +1,17 @@
 clear;clc;
 
-pic = ones(10,10);
+%pic = ones(10,10);
 %pic(3:6, 4:7) = zeros(4,4);
-pic(:,3) = zeros(10,1);
-pic(:,8) = zeros(10,1);
+%pic(:,3) = zeros(10,1);
+%pic(:,8) = zeros(10,1);
+pic = checkerboard(1);
 
 figure
 imshow(pic)
 y = pic(:);
 
 
-N = 100; 
+N = 64; 
 
 L = 1;
 B = randn(N,L);
@@ -44,11 +45,15 @@ cvx_end
 
 col = U(:,1);
 col = ifft(col);
-%col = sum(U,2);
-%imshow(pic)
-%imshow(reshape(abs(col),[10,10]))
-result = reshape(abs(col),[10,10]);
-ind = find(result > 1e-4);
-result(ind) = 1.0;
+
+result = reshape(abs(col),[8,8]);
+M0 = max(pic);
+M1 = max(result);
+scale = M0 / M1;
+result = result * scale;
+
+%ind = find(result > 1e-4);
+%result(ind) = 1.0;
 figure
 imshow(result)
+
