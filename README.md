@@ -9,3 +9,7 @@ Atomic.m - binary and gray scale image reconstruction
 
 tracelasso.m, prox_nuclear.m - functions from https://github.com/canyilu/LibADMM
 admm.m - tracelasso application
+
+svt_new - fixed svt
+
+admm_rpca - Robust PCA
